@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova PC</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">N</span><span>Nova PC</span></div>
+    <div class="window-label">Navegador</div>
+    <div class="top-actions"><button id="homeBtn" title="Inicio">⌂</button></div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="side-label">ESPACIO DE TRABAJO</div>
+      <button class="side-item active" id="browserNav"><span>◉</span> Navegador</button>
+      <button class="side-item" data-url="https://www.youtube.com/"><span>▶</span> YouTube</button>
+      <button class="side-item" data-url="https://duckduckgo.com/"><span>⌕</span> Buscar en la web</button>
+      <div class="sidebar-bottom">
+        <div class="status-dot"></div>
+        <div><strong>Nova PC</strong><small>Navegador integrado</small></div>
+      </div>
+    </aside>
+
+    <section class="browser-area">
+      <div class="toolbar">
+        <button id="backBtn" class="tool-btn" title="Atrás" disabled>←</button>
+        <button id="forwardBtn" class="tool-btn" title="Adelante" disabled>→</button>
+        <button id="reloadBtn" class="tool-btn" title="Recargar">↻</button>
+        <form id="addressForm" class="address-form">
+          <span class="lock-icon">◈</span>
+          <input id="address" type="text" value="https://duckduckgo.com/" aria-label="Dirección web" spellcheck="false">
+          <button type="submit" class="go-btn">Ir</button>
+        </form>
+        <button id="newTabBtn" class="tool-btn" title="Nueva página">＋</button>
+      </div>
+
+      <div class="tab-strip">
+        <div class="tab active"><span class="tab-dot"></span><span id="tabTitle">Nueva pestaña</span></div>
+        <div class="tab-hint">Navegación web</div>
+      </div>
+
+      <div class="web-container">
+        <div id="welcome" class="welcome">
+          <div class="welcome-orb">N</div>
+          <p class="eyebrow">TU ESPACIO DIGITAL</p>
+          <h1>¿Qué exploramos hoy?</h1>
+          <p class="welcome-sub">Busca en la web o abre uno de tus sitios favoritos.</p>
+          <form id="searchForm" class="search-form">
+            <span>⌕</span>
+            <input id="searchInput" placeholder="Escribe una dirección o busca..." aria-label="Buscar en la web">
+            <button type="submit">Buscar</button>
+          </form>
+          <div class="quick-links">
+            <button data-url="https://www.youtube.com/"><span class="quick-icon red">▶</span><span>YouTube</span></button>
+            <button data-url="https://duckduckgo.com/"><span class="quick-icon purple">⌕</span><span>DuckDuckGo</span></button>
+            <button data-url="https://www.wikipedia.org/"><span class="quick-icon blue">W</span><span>Wikipedia</span></button>
+          </div>
+          <p class="note">Las páginas web necesitan conexión a internet.</p>
+        </div>
+        <webview id="browser" src="https://duckduckgo.com/" partition="persist:nova-browser" allowpopups></webview>
+      </div>
+      <footer class="statusbar"><span><i></i> Navegación lista</span><span id="statusText">Nova PC · 1.0.0</span></footer>
+    </section>
+  </main>
+  <script src="renderer.js"></script>
+</body>
+</html>
