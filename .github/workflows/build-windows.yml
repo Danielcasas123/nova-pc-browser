@@ -13,6 +13,11 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
+
+    defaults:
+      run:
+        working-directory: nova-pc-browser-source/nova-pc-browser
+
     steps:
       - name: Descargar proyecto
         uses: actions/checkout@v4
@@ -22,15 +27,23 @@ jobs:
         with:
           node-version: 22
 
+      - name: Comprobar archivos
+        run: |
+          if (!(Test-Path "package.json")) {
+            Write-Error "No se encuentra package.json en la carpeta del proyecto"
+            exit 1
+          }
+          Write-Output "package.json encontrado"
+
       - name: Instalar dependencias
         run: npm install --no-audit
 
-      - name: Crear instalador
+      - name: Crear instalador de Windows
         run: npm run dist
 
       - name: Guardar instalador
         uses: actions/upload-artifact@v4
         with:
           name: Nova-PC-Windows-x64
-          path: dist/*.exe
+          path: nova-pc-browser-source/nova-pc-browser/dist/*.exe
           if-no-files-found: error
